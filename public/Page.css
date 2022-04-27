@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+
+
+:root {
+    --accent : #790A0A ;
+    --accentHover:#d63d3d ;
+    --dark80:rgba(18,70,89,0.8);
+    --dark60:rgba(18,70,89,0.6);
+    --light:#F5EEEE ;
+    --transition: all 0.3s ease 0s;
+
+}
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+}
+html,body{
+    height: 100%;
+    overflow: auto;
+
+}
+body{
+    background:
+    linear-gradient(
+        var(--dark60),var(--dark60)
+    ),
+    url(./image/BG1.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    
+}
+nav{
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    top: 50%;
+    left: 48%;
+    margin-top: -100px;
+    margin-left: -100px;
+}
+
+a,button{
+    position: fixed;
+    top: 50%;
+    left: 46.5%;
+    margin:0 auto;
+}

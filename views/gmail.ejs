@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="Page.css">
+
+
+        <meta name="google-signin-scope" content="profile email">
+        <meta name="google-signin-client_id" content="178309805156-u91cp9cq3v2f2nhs4ubp2jfl7737divb.apps.googleusercontent.com">
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+    </head>
+    <body>
+       <main>
+        <a href="localhost:8000/index">index</a>
+        <a href="localhost:8000/gmail">gmail</a>
+        <a href="localhost:8000/index">login</a>
+        <a href="localhost:8000/index">main</a>
+           <header>
+               <nav>
+                   <img class="logo"src="image/LOGIN.svg">
+                   <div class="links">
+
+                   </div>
+                </nav>
+
+
+
+           </header>
+       </main>
+
+
+       <button class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" style="position: center" ></button>
+    
+       <!--Result: <textarea id="result"></textarea>-->
+
+
+       <script>
+        function bindGpLoginBtn() {
+          gapi.load('auth2', function(){
+            auth2 = gapi.auth2.init({
+              client_id:'178309805156-u91cp9cq3v2f2nhs4ubp2jfl7737divb.apps.googleusercontent.com',
+              scope: 'profile email'
+            });
+            attachSignin(document.getElementById('gp-login-btn'));
+          });
+      }
+         
+        function attachSignin(element) {
+          auth2.attachClickHandler(element, {},
+            function(googleUser) {
+              // Success
+       getCurrentGpUserInfo(googleUser);
+            }, function(error) {
+       // Error
+       console.log(JSON.stringify(error, undefined, 2));
+            }
+          );
+        }
+      
+        function getCurrentGpUserInfo(userInfo) {
+          var result = '';
+          
+          // Useful data for your client-side scripts:
+          var profile = userInfo.getBasicProfile();
+          
+          result+= "ID: "+profile.getId()+"\n";
+          result+= "Full Name:  "+profile.getName()+"\n";
+          result+= "Given Name: "+profile.getGivenName()+"\n";
+          result+= "Family Name: "+profile.getFamilyName()+"\n";
+          result+= "Email: "+profile.getEmail()+"\n";
+          result+= "ID Token: "+userInfo.getAuthResponse().id_token+"\n";
+          
+          document.getElementById("result").value = result;
+      }
+      </script>
+
+
+
+        <script src="" async defer></script>
+    </body>
+</html>

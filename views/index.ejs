@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <a href="/">index</a>
+    <a href="/main">main</a>
+    <a href="/feeder">feeder</a>
+    <h1>ตัวเองรู้จัก NodeMCU integrated module ไหม Diagram หน้าตาประมานนี้</h1>
+    <img src="https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/05/ESP8266-NodeMCU-kit-12-E-pinout-gpio-pin.png?quality=100&strip=all&ssl=1" alt="">
+    <table>
+        <tr>
+            <button onclick="res1()">ใช่ ฉันรู้จัก</button>
+            
+        </tr>
+        <tr>
+            <button onclick="res2()"" >ไม่ ฉันไม่รู้จัก</button>
+        </tr>
+        <script>
+            function res1() {
+              alert("ว้าว เก่ง และ ดี เราดูแล้วเราชอบมาก");
+            }
+            function res2() {
+              alert("มึงก็ไปหาเปิด Google สิครับไม่รู้แล้วอยู่เฉยๆ NodeMCU จะลอยมาหามึงไหม");
+            }
+            </script>
+    </table>
+    <h1>ว่าแต่ตัวเองชื่ออะไรหล่ะ ? </h1>
+    <form action="/main" method="post">
+
+        <div>
+            <label for="name">เราชื่อว่า : </label>
+            <input type="text" name = "name" id = 'name'>
+        </div>
+       
+        <button>จดจำเราไว้ด้วยนะ</button>
+    </form>
+
+</body>
+</html>
