@@ -1,0 +1,4 @@
+ 
+        <% if (typeof err == "undefined") { %> 
+            <h1>กรุณากลับไป login</h1>
+        <% } %>

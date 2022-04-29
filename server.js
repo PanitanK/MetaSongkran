@@ -14,13 +14,6 @@ app.use(bodyParser.json())
 var obj = {}
 
 
-const pool = mysql.createPool({
-    connectionLimit : 10,
-    host            : 'localhost',
-    user            : 'root',
-    password        : '',
-    database        : 'songkran'
-})
 
 const locker = mysql.createPool({
     connectionLimit : 10,
@@ -29,6 +22,15 @@ const locker = mysql.createPool({
     password        : '',
     database        : 'locker'
 })
+
+const profile = mysql.createPool({
+    connectionLimit : 10,
+    host            : 'localhost',
+    user            : 'root',
+    password        : '',
+    database        : 'profile'
+})
+
 
 
 
@@ -90,23 +92,74 @@ app.post("/reg",(req,res)=> {
     console.log(username)
     console.log(password)
     
+    
 
 
     locker.getConnection((err,connection)=>{
         if (err) throw err 
         console.log("connected : ",connection.threadId)
+        locker.query('INSERT INTO locker(`username`,`password`) VALUES (?,?)',[username,password],(err,rows)=>{
+            connection.release();
+            if (err) throw err 
+            console.log("connected : ",connection.threadId)
+            console.log("Is completed")
+            
+        })
     })
-    locker.query('INSERT INTO locker(`username`,`password`) VALUES ("?","?")',[username,password],(err,rows)=>{
+
+    profile.getConnection((err,connection)=>{
         if (err) throw err 
-        console.log("Is completed")
-        res.render("main")//
-
-
+        console.log("connected : ",connection.threadId)
+        profile.query('INSERT INTO `profile` (`username`) VALUES (?)',[username],(err,rows)=>{
+            connection.release();
+            if (err) throw err 
+            console.log("connected : ",connection.threadId)
+            console.log("Is completed")
+            
+        })
     })
     
-    res.render("main",{name : name})
+    res.render("profile",{username : username})
+})
 
+
+
+app.post("/login",(req,res)=> {
+    username = req.body.username
+    password = req.body.password
+    console.log(username)
+    console.log(password)
+    
+    
+
+
+    locker.getConnection((err,connection)=>{
+        if (err) throw err 
+        console.log("connected : ",connection.threadId)
+        locker.query(' SELECT * FROM `locker` WHERE `BIGORDER` < 1000000000 AND username = ? AND password = ?' ,[username,password],(err,rows)=>{
+            connection.release();
+            if (err) throw err 
+            console.log("connected : ",connection.threadId)
+            console.log("Is completed")
+            console.log(rows)
+            console.log(rows.length)
+            if (rows.length  !=  1 ) {
+                res.send("กาก")
+            }
+            else {
+                res.render("profile",{username : username})
+            }
+        })
+    })
+    
+    
 })
 
 //INSERT INTO `locker` (`username`, `password`) VALUES (obj.username , obj.password )
 //  <% if (typeof err != "undefined") { %> 
+
+app.get("/profile",(req,res)=> {
+    res.render("profile",{username : username})
+
+
+})
