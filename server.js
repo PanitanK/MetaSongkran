@@ -202,9 +202,6 @@ app.post("/profile/edit",(req,res)=> {
 
 
 
-// ' UPDATE `profile` SET `profileimglink` = ? WHERE `profile`.`ORDERNO` = 3 '
-
-
 
 
 
