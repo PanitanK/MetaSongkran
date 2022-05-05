@@ -5,28 +5,14 @@ body{
 }
 
 a{
+
     font-family: 'Kanit',sans-serif;
 }
 a:hover{
     color: rgb(70, 134, 253);
 }
-label{
-    font-family: 'Kanit',sans-serif;
-    font-size: 1.5rem;
-    font-weight: 400;
-}
-h1{
-    font-family: 'Kanit',sans-serif;
-    font-size: 3rem;
-    font-weight: 700;
-}
-button{
-    font-family: 'Kanit',sans-serif;
-}
-button:hover{
-    background-color: aquamarine;
 
-}
+
 .pill-nav a {
     display: inline-block;
     color: black;
@@ -48,3 +34,9 @@ button:hover{
     background-color: dodgerblue;
     color: white;
   }
+  h1{
+    text-align: center;
+    font-family: 'Kanit',sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
+}
