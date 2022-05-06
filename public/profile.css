@@ -48,3 +48,8 @@ button:hover{
     background-color: dodgerblue;
     color: white;
   }
+  .BIG {
+      color: green;
+      text-align: left;
+      display: inline-block;
+  }

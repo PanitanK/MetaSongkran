@@ -2,6 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const mysql = require('mysql');
 const { load } = require('nodemon/lib/config');
+const res = require('express/lib/response');
 const app = express()
 var name = "ผู้ใช้งาน";
 const port = process.env.PORT || 8000
@@ -31,6 +32,14 @@ const profile = mysql.createPool({
     user            : 'root',
     password        : '',
     database        : 'profile'
+})
+
+const device = mysql.createPool({
+    connectionLimit : 10,
+    host            : 'localhost',
+    user            : 'root',
+    password        : '',
+    database        : 'device'
 })
 
 
@@ -112,8 +121,20 @@ app.post("/reg",(req,res)=> {
 
     profile.getConnection((err,connection)=>{
         if (err) throw err 
-        console.log("connected : ",connection.threadId)
+        console.log("profile connected : ",connection.threadId)
         profile.query('INSERT INTO `profile` (`username` , `profileimglink`) VALUES (?,?)',[username,imglink],(err,rows)=>{
+            connection.release();
+            if (err) throw err 
+            console.log("connected : ",connection.threadId)
+            console.log("Is completed")
+            
+        })
+    })
+
+    device.getConnection((err , connection) =>{
+        if (err) throw err 
+        console.log("device connected : ",connection.threadId)
+        device.query('INSERT INTO `device` (`username`) VALUES (?)',[username],(err,rows)=>{
             connection.release();
             if (err) throw err 
             console.log("connected : ",connection.threadId)
@@ -171,8 +192,6 @@ app.post("/login",(req,res)=> {
     
 })
 
-//INSERT INTO `locker` (`username`, `password`) VALUES (obj.username , obj.password )
-//  <% if (typeof err != "undefined") { %> 
 
 app.get("/profile",(req,res)=> {
     profile.getConnection((err,connection )=>{
@@ -200,6 +219,22 @@ app.post("/profile/edit",(req,res)=> {
     })
 })
 
+app.get("/profile/device1" , (req,res) =>{
+    
+    device.getConnection((err,connection) =>{
+        if (err) throw err 
+        device.query(' SELECT * FROM `device` WHERE `username` = ?  ', [username] , (err , rows)=> {
+            console.log(rows)
+            var devnum = rows[0].devnum
+            var port1 = rows[0].port1
+            var port1val = rows[0].port1val
+            var port2 = rows[0].port2
+            var port2val = rows[0].port2val
+            console.log(devnum , port1 , port1val , port2 ,port2val)
+        })
+    })
+    res.render("feeder")
+})
 
 
 
@@ -220,5 +255,46 @@ app.post("/profile/edit",(req,res)=> {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+app.get("/profile/device2" , (req,res) =>{
+    res.send("ยังไม่เปิดให้ใช้งานนะ เสียใจด้วย")
+})
+
+app.get("/profile/device3" , (req,res) =>{
+    res.send("ยังไม่เปิดให้ใช้งานนะ เสียใจด้วย")
+})
+
+app.get("/profile/device4" , (req,res) =>{
+    res.send("ยังไม่เปิดให้ใช้งานนะ เสียใจด้วย")
+})
+
+app.get("/profile/device5" , (req,res) =>{
+    res.send("ยังไม่เปิดให้ใช้งานนะ เสียใจด้วย")
+})
 
 

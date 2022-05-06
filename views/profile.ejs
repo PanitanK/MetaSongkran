@@ -11,14 +11,41 @@
         <center>
         <div class="pill-nav">
             <a href="/">เรากลัวแล้ว พาเรากลับหน้าหลัก</a>
+            <a href="/profile/edit">เราอยากเปลี่ยน Profile image หน่ะ </a>
           </div> 
         </center>     
         </head>
     <body>
         <center>
-        <img src="<%=username%>" alt="">
+            <img src= <%= imglink %> >
+
         <h1>ยินดีต้อนรับนะ : <%=username%></h1>
         <h1> อุปกรณ์ของคุณ </h1>
+        <div class="BIG">
+            <table>
+                <tr>
+                    <h1>Device : </h1>
+                    <a class="" href="/profile/device1">ของใหญ่ 1</a>
+                </tr>
+                <tr>
+                    <h1>Device : </h1>
+                    <a href="/profile/device2">ของใหญ่ 2</a>
+                </tr>
+                <tr>
+                    <h1>Device : </h1>
+                    <a href="/profile/device3">ของใหญ่ 3</a>
+                </tr>
+                <tr>
+                    <h1>Device : </h1>
+                    <a href="/profile/device4">ของใหญ่ 4</a>
+                </tr>
+                <tr>
+                    <h1>Device : </h1>
+                    <a href="/profile/device5">ของใหญ่ 5</a>
+                </tr>
+            </table>
+        </div>
+       
 
         <script src="" async defer></script>
     </center>
