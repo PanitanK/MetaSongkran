@@ -51,7 +51,23 @@ h2,label {
     color: black;
     font-weight: 400;
     font-size: 1.5rem;
+    background-image: linear-gradient(
+        transparent 0%,
+        transparent 90%,
+        rgb(250, 112, 112) 90%,
+        rgb(250, 112, 112) 100%
+    );
+    background-repeat: no-repeat;
+    background-size: 0% 100%;
+    background-position-x: right;
+    transition: background-size 300ms;
 }
+
+h2:hover{
+    background-size: 100% 100%;
+    background-position-x: left;
+}
+
 button{
     white-space: pre;
     font-family: 'Kanit',sans-serif;
