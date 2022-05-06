@@ -22,7 +22,18 @@ h1{
     font-family: 'Kanit',sans-serif;
     font-size: 4rem;
     font-weight: 500;
+    background-image: linear-gradient(#ffffff,#ffffff);
+    background-repeat: no-repeat;
+    background-size: 0% 100%;
+    background-position-x: right;
+    transition: background-size 500ms;
 }
+
+h1:hover{
+    background-size: 100% 100%;
+    background-position-x: left;
+}
+
 h2{
     font-family: 'Kanit',sans-serif;
     font-size: 1rem;
@@ -42,13 +53,11 @@ button{
     border-radius: 5px;
   }
   
-  /* Change the color of links on mouse-over */
   .pill-nav a:hover {
     background-color: #ddd;
     color: black;
   }
   
-  /* Add a color to the active/current link */
   .pill-nav a.active {
     background-color: dodgerblue;
     color: white;
