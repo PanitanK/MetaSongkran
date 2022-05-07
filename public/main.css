@@ -6,8 +6,11 @@
 }
 
 body{
-    background-color: plum;
-}
+    background: linear-gradient(#c7a0f5, #ffcaca);
+  }
+  html{
+    height: 100%;
+  }
 
 a {
     margin: 30px;
@@ -15,7 +18,7 @@ a {
   }
   
  a:hover {
-    color: rgb(186, 121, 247);
+    color: rgb(255, 152, 152);
 } 
 
 h1{
@@ -43,23 +46,63 @@ button{
     font-family: 'Kanit',sans-serif;
     font-weight: 400;
 }
-.pill-nav a {
-    display: inline-block;
-    color: black;
+
+
+body { font-family: 'Kanit',sans-serif; }
+
+#main-menu .nav-bar { list-style:none; margin-top: 40px; }
+#main-menu .nav-bar li { display:inline; padding:0 10px; }
+
+#main-menu .nav-bar li a {
+  text-decoration: none;
+  padding-left: 25px;
+  text-transform: uppercase;
+  color: #333;
+	text-shadow: 1px 1px 1px #ccc;
+}
+
+.nav-bar .nav-button-home a { background:url("https://www.cheesetoast.co.uk/cheesepress/wp-content/uploads/2012/08/home.gif") no-repeat 0px -2px transparent; }
+
+.nav-bar .nav-button-services a { background:url("https://www.cheesetoast.co.uk/cheesepress/wp-content/uploads/2012/08/services.gif") no-repeat 0px -2px transparent; }
+
+.nav-bar .nav-button-products a { background:url("https://www.cheesetoast.co.uk/cheesepress/wp-content/uploads/2012/08/products.gif") no-repeat 0px -2px transparent; }
+
+h1{
+    position: fixed;  
+    top: 50%;  
+    left: 50%;  
+    transform: translate(-50%, -50%);  
+}
+
+h2{
     text-align: center;
-    padding: 14px;
-    text-decoration: none;
-    font-size: 17px;
-    border-radius: 5px;
+    padding: 600px 0 0 0;
+    text-decoration: underline rgb(165, 56, 255);
+}
+
+
+.button {
+    padding: 5px 5px;
+    font-size: 24px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+    background-color: #04AA6D;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
   }
   
-  .pill-nav a:hover {
-    background-color: #ddd;
-    color: black;
-  }
+  .button:hover {background-color: #3e8e41}
   
-  .pill-nav a.active {
-    background-color: dodgerblue;
-    color: white;
+  .button:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
   }
+
+
+
+
   
