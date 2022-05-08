@@ -262,5 +262,3 @@ client.on("message" , function (topic ,message ){
     console.log(message.toString())
     port1val = message.toString()
 })
-var username = 'songkran'
-var password = '1234'
