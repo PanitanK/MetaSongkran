@@ -4,31 +4,40 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <div class="pill-nav">
-        <a href="/">เรากลัวแล้ว พาเรากลับหน้าหลัก</a>
-      </div>  
+    <center>
+    <nav id="main-menu">
+        <ul class="nav-bar">
+             <li class="nav-button-home"><a href="/">INDEX</a></li>
+             <li class="nav-button-services"><a href="/main">MAIN</a></li>
+             <li class="nav-button-products"><a href="/feeder">FEEDER</a></li>
+        </ul>
+   </nav>  
+</center>
         <title>Document</title>
     <link rel="stylesheet" href="login.css">
 </head>
 <body>
- <h1>LOGIN</h1>
-    
-    <form action="/login" method="post">
-        <div>
-            <label for="username">Username:</label>
-            <input type="text" name="username" id="username">
-        </div>
-
-        <div>
-            <label for="password">Password:</label>
-            <input type="text" name="password" id="password">
-        </div>
-        <button>ยืนยัน </button>
+<div class="login-box">
+        <form action="/login" method="post">
         
-
-
-
-
+            <h2>Login</h2>       
+              <div class="user-box">
+                <input type="text" name="username" id="username">
+                <label for="username">Username:</label>
+            </div>
+              <div class="user-box">
+                <input type="text" name="password" id="password">
+                <label for="password">Password:</label>
+              </div>
+              <button>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                Submit
+              </button>
+            
+        </div>
     </form>
 </body>
 </html>
