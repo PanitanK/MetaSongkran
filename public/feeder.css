@@ -15,23 +15,18 @@ a:hover{
     color: rgb(70, 134, 253);
 }
 
-h1,h2,h3,h4,h5{
+h1{
   text-align: center;
   font-family: 'Kanit',sans-serif;
-  font-size: 3rem;
-  font-weight: 700;
-
-  width:200px;
-  height:100px;
-  position:fixed;
-  top:50%;
-  left:50%;
-  margin-left:-100px;
-  margin-top:-50px;
-
+  font-size: 2.5rem;
+  font-weight: 500;
 }
-
-
+h2{
+  text-align: center;
+  font-family: 'Kanit',sans-serif;
+  font-size: 2.5rem;
+  font-weight: 500;
+}
 
 
 .pill-nav a {
@@ -40,7 +35,7 @@ h1,h2,h3,h4,h5{
   text-align: center;
   padding: 14px;
   text-decoration: none;
-  font-size: 20px;
+  font-size: 30px;
   border-radius: 5px;
 }
 
