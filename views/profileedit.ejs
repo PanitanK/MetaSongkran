@@ -15,8 +15,8 @@
         <a href="/profile">เราเปลี่ยนใจแล้ว เราอยากกลับไปหน้าที่แล้ว </a>
     </head>
     <body>
-        <h1><%=username%> นายนะก็เปลี่ยนรูปโปรไฟล์ได้่นะ  </h1>
-        <h2>รูปปัจจุบันของนาย</h2>
+        <h1><%=username%> นายนะก็เปลี่ยนรูปโปรไฟล์ได้นะ  </h1>
+        <h2>รูปปัจจุบันของ<%=username%></h2>
         <img src= <%= imglink %> >
         <form action="/profile/edit" method="post">
             <div>
