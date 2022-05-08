@@ -8,7 +8,7 @@ html{
 }
 
 a{
-
+    margin: 30px;
     font-family: 'Kanit',sans-serif;
 }
 a:hover{
