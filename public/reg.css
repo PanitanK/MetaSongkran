@@ -6,10 +6,18 @@ body{
 html{
   height: 100%;
 }
+
+a {
+  font-family: 'Kanit',sans-serif;
+  font-size: 1.5rem;
+    font-weight: 300;
 }
 
-a{
-    ffont-family: 'Kanit',sans-serif;
+
+h2{
+    font-family: 'Kanit',sans-serif;
+    font-size: 1.5rem;
+    font-weight: 300;
 }
 a:hover{
     color: rgb(70, 134, 253);
@@ -26,6 +34,8 @@ h1{
 }
 button{
     font-family: 'Kanit',sans-serif;
+    font-size: 1.5rem;
+    font-weight: 300;
 }
 button:hover{
     background-color: aquamarine;
@@ -61,6 +71,9 @@ button:hover{
     background: linear-gradient(#c7a0f5, #ffcaca);
   }
   
+  
+
+
   .login-box {
     position: absolute;
     top: 50%;
@@ -74,7 +87,8 @@ button:hover{
     border-radius: 10px;
   }
   
-  .login-box h1 {
+  
+  .login-box h2 {
     margin: 0 0 30px;
     padding: 0;
     color: #fff;
@@ -218,3 +232,4 @@ button:hover{
       bottom: 100%;
     }
   }
+  
