@@ -6,3 +6,23 @@ body{
   html{
     height: 100%;
   }
+
+  .pill-nav a {
+    display: inline-block;
+    color: black;
+    text-align: center;
+    padding: 14px;
+    text-decoration: none;
+    font-size: 17px;
+    border-radius: 5px;
+  }
+  
+  .pill-nav a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  
+  .pill-nav a.active {
+    background-color: dodgerblue;
+    color: white;
+  }
