@@ -190,6 +190,33 @@ app.get("/profile/device1" , (req,res) =>{
     })
     
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 var port1 = 'TOU'
 var port2 = 'MANG'
 var portlist = [port1 , port2]
@@ -215,5 +242,72 @@ client.on("message" , function (portlist ,message,packet ){
         connection.release()
     })
 })
+
+
+app.post("/profile/device1/OFF" , (req , res ) => {
+    trig = req.body.trig 
+    console.log(trig)
+
+
+
+    device.getConnection((err,connection) => {
+        if (err) throw err 
+        device.query('UPDATE `device` SET `port2val` = ? WHERE username = ? AND port2 = ?' , [trig , username , port2])
+        connection.release()
+    })
+
+    device.getConnection((err,connection) =>{
+        if (err) throw err 
+        device.query(' SELECT * FROM `device` WHERE `username` = ?  ', [username] , (err , rows)=> {
+            if (err) throw err 
+            connection.release()
+            var devorder = rows[0].devorder
+            var port1 = rows[0].port1
+            var port1val = rows[0].port1val
+            var port2 = rows[0].port2
+            var port2val = rows[0].port2val
+            var devname = rows[0].devname
+            res.render("feeder" ,{ devname : devname , devorder : devorder , port1 : port1 , port2 : port2 , port1val ,port2val} ) 
+        })
+    }) 
+    
+   
+})
+
+
+app.post("/profile/device1/ON" , (req , res ) => {
+    trig = req.body.trig 
+    console.log(trig)
+
+
+
+    device.getConnection((err,connection) => {
+        if (err) throw err 
+        device.query('UPDATE `device` SET `port2val` = ? WHERE username = ? AND port2 = ?' , [trig , username , port2])
+        connection.release()
+    })
+
+    device.getConnection((err,connection) =>{
+        if (err) throw err 
+        device.query(' SELECT * FROM `device` WHERE `username` = ?  ', [username] , (err , rows)=> {
+            if (err) throw err 
+            connection.release()
+            var devorder = rows[0].devorder
+            var port1 = rows[0].port1
+            var port1val = rows[0].port1val
+            var port2 = rows[0].port2
+            var port2val = rows[0].port2val
+            var devname = rows[0].devname
+            res.render("feeder" ,{ devname : devname , devorder : devorder , port1 : port1 , port2 : port2 , port1val ,port2val} ) 
+        })
+    }) 
+    
+   
+})
+
+
+
+
+
 
 

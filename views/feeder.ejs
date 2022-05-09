@@ -33,13 +33,13 @@
         <h2>Digital channel : </h2>
         <h2><%= port2val %></h2>
         <div>
-            <form action="ON" method="post">
-                <button name="ON" value="ON">ON</button>
+            <form action="/profile/device1/ON" method="post">
+                <button name="trig" value="ON">ON</button>
             </form>
         </div>
         <div>
-            <form action="/OFF" method="post">
-                <button name="OFF" value="OFF">OFF</button>
+            <form action="/profile/device1/OFF" method="post">
+                <button name="trig" value="OFF">OFF</button>
             </form>
         </div>
     </center>
