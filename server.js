@@ -17,7 +17,7 @@ const mqtt = require('mqtt');
 const { connect } = require('mqtt');
 var client = mqtt.connect("mqtt://broker.hivemq.com:1883")
 var obj = {}
-var client = mqtt.connect("mqtt://broker.hivemq.com:1883")
+
 var imglink = "https://images-ext-2.discordapp.net/external/hXOrwEsGQxd_kDpfr3BcodzsNulDCw_m6sFRJcsu14g/https/s2s.co.th/wp-content/uploads/2019/09/photo-icon-Copy-2.jpg"
 var port1 = '0'
 const locker = mysql.createPool({
@@ -43,107 +43,63 @@ const device = mysql.createPool({
     password        : '',
     database        : 'device'
 })
-
-
-
-
-
-
 app.use(express.static('public'))
-
 app.set('view engine' , 'ejs')
-
-
 app.get("/",(req,res)=> {
-    res.render("index")
-    
+    res.render("index")    
 })
-
-
-
 app.get("/login",(req,res)=> {
     res.render("login")
-
 })
-
 app.get("/feeder",(req,res)=> {
     res.render("feeder")
-
 })
-
 app.get("/main",(req,res)=> {
     res.render("main",{name : name})
-
-
 })
-
 app.post("/main",(req,res)=> {
     name = req.body.name
-
     res.render("main",{name : name})
-
 })
-
 app.listen(port,()=>{
     console.log("Server is listening on port ",port)
-
-
 })
-
 app.get("/reg",(req,res)=> {
     locker.getConnection((err,connection)=>{
         if (err) throw err
-
     })
     res.render("reg")
-
 })
-
 app.post("/reg",(req,res)=> {
     username = req.body.username
     password = req.body.password
     var imglink = "https://images-ext-2.discordapp.net/external/hXOrwEsGQxd_kDpfr3BcodzsNulDCw_m6sFRJcsu14g/https/s2s.co.th/wp-content/uploads/2019/09/photo-icon-Copy-2.jpg"
-
-    
-    
-
-
     locker.getConnection((err,connection)=>{
         if (err) throw err 
-        console.log("connected : ",connection.threadId)
         locker.query('INSERT INTO locker(`username`,`password`) VALUES (?,?)',[username,password],(err,rows)=>{
             connection.release();
-            if (err) throw err 
-
-            
+            if (err) throw err       
         })
     })
-
     profile.getConnection((err,connection)=>{
         if (err) throw err 
-        console.log("profile connected : ",connection.threadId)
         profile.query('INSERT INTO `profile` (`username` , `profileimglink`) VALUES (?,?)',[username,imglink],(err,rows)=>{
             connection.release();
-            if (err) throw err 
-
-            
+            if (err) throw err       
         })
     })
-
-    
+    device.getConnection((err,connection)=>{
+        if (err) throw err 
+        device.query('INSERT INTO `device` (`username`,`devorder`) VALUES (?,?)',[username,'1'],(err,rows)=>{
+            connection.release();
+            if (err) throw err       
+        })
+    })    
     res.render("profile",{username : username , imglink : imglink })
 })
-
-
-
 app.post("/login",(req,res)=> {
     username = req.body.username
     password = req.body.password
-
-    
-    
-
-
     locker.getConnection((err,connection)=>{
         if (err) throw err 
         console.log("connected : ",connection.threadId)
@@ -155,28 +111,17 @@ app.post("/login",(req,res)=> {
                 res.send("กาก")
             }
             else {
-
-                
                 profile.getConnection((err,connection )=>{
                     if (err) throw err 
-                  
                     profile.query('SELECT profileimglink FROM profile WHERE username = ?',[username],(err,rows)=>{
                     imglink = rows[0].profileimglink
                     res.render("profile",{username : username , imglink : imglink })
                     })
                 })
-             
-                
-
-
             }
         })
-    })
-    
-    
+    })   
 })
-
-
 app.get("/profile",(req,res)=> {
     profile.getConnection((err,connection )=>{
         if (err) throw err 
@@ -186,10 +131,7 @@ app.get("/profile",(req,res)=> {
         res.render("profile",{username : username , imglink : imglink })
         })
     })
-
-
 })
-
 app.get("/profile/edit",(req,res)=> {
     res.render("profileedit.ejs",{username : username , imglink : imglink })
 })
@@ -208,8 +150,7 @@ app.post("/profile/assign" , (req,res) =>{
         device.query('UPDATE device SET  devname = ? , port1 = ? , port2 = ? WHERE username = ? AND devorder = ? ',
         [  devname , port1 , port2, username , devorder   ],(err , rows)=>{
             if (err) throw err 
-            
-
+            console.log(rows)
         })
     })
     res.render("profile",{username : username , imglink : imglink} )
@@ -222,6 +163,7 @@ app.post("/profile/edit",(req,res)=> {
     profile.getConnection((err,connection )=>{
         if (err) throw err 
         profile.query('UPDATE `profile` SET `profileimglink` = ? WHERE username = ? ',[imglink,username],(err,rows)=>{
+            connection.release()
         res.render("profile",{username : username , imglink : imglink })
         })
     })
@@ -231,13 +173,11 @@ app.get("/profile/device1" , (req,res) =>{
  
     device.getConnection((err,connection)=> {
         if (err) throw err 
-
-    
     })
     device.getConnection((err,connection) =>{
         if (err) throw err 
         device.query(' SELECT * FROM `device` WHERE `username` = ?  ', [username] , (err , rows)=> {
-  
+            connection.release()
             var devorder = rows[0].devorder
             var port1 = rows[0].port1
             var port1val = rows[0].port1val
@@ -251,16 +191,29 @@ app.get("/profile/device1" , (req,res) =>{
     
 })
 var port1 = 'TOU'
+var port2 = 'MANG'
+var portlist = [port1 , port2]
 
 client.on("connect" , function() {
-    client.subscribe(port1)
-    console.log("Successfully subscribed to ",port1)
-    console.log(port1 , "Is currently using as port1")
+    client.subscribe(portlist)
 })
 
-client.on("message" , function (topic ,message ){
-    console.log(message.toString())
-    port1val = message.toString()
+client.on("message" , function (portlist ,message,packet ){
+    console.log(portlist)
+    console.log(packet.topic)
+    console.log(message.toLocaleString())
+    portval = message.toLocaleString()
+    porto = packet.topic
+    device.getConnection((err,connection) => {
+        if (err) throw err 
+        device.query('UPDATE `device` SET `port1val` = ? WHERE username = ? AND port1 = ?' , [portval , username , porto])
+        connection.release()
+    })
+    device.getConnection((err,connection) => {
+        if (err) throw err 
+        device.query('UPDATE `device` SET `port2val` = ? WHERE username = ? AND port2 = ?' , [portval , username , porto])
+        connection.release()
+    })
 })
-var username = 'songkran'
-var password = '1234'
+
+

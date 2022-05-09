@@ -22,10 +22,26 @@
         <h1><%= devname %></h1>
         <img src="https://media.discordapp.net/attachments/874945058036666388/971865981251117066/IMG_4639.png?width=1440&height=356" alt="">
         <script src="" async defer></script>
+        <div>
+            <form action="/profile/device1" method="get">
+                <button>Refresh</button>
+            </form>
+            
+        </div>
         <h2>Analog channel : </h2>
         <h2><%= port1val %></h2>
         <h2>Digital channel : </h2>
         <h2><%= port2val %></h2>
+        <div>
+            <form action="ON" method="post">
+                <button name="ON" value="ON">ON</button>
+            </form>
+        </div>
+        <div>
+            <form action="/OFF" method="post">
+                <button name="OFF" value="OFF">OFF</button>
+            </form>
+        </div>
     </center>
     </body>
 </html>
