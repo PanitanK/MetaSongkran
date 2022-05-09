@@ -9,10 +9,9 @@ html{
 
 a {
   font-family: 'Kanit',sans-serif;
-  font-size: 1.5rem;
-    font-weight: 300;
+  font-size: 10rem;
+  font-weight: 500;
 }
-
 
 h2{
     font-family: 'Kanit',sans-serif;
@@ -34,7 +33,7 @@ h1{
 }
 button{
     font-family: 'Kanit',sans-serif;
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-weight: 300;
 }
 button:hover{
@@ -47,7 +46,7 @@ button:hover{
     text-align: center;
     padding: 14px;
     text-decoration: none;
-    font-size: 17px;
+    font-size: 20px;
     border-radius: 5px;
   }
   

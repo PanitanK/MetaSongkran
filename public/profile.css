@@ -19,7 +19,24 @@ h1{
     font-family: 'Kanit',sans-serif;
     font-size: 3rem;
     font-weight: 700;
+    background-image: linear-gradient(#ffffff,#ffffff);
+    background-repeat: no-repeat;
+    background-size: 0% 100%;
+    background-position-x: right;
+    transition: background-size 500ms;
 }
+
+h1:hover{
+    background-size: 100% 100%;
+    background-position-x: left;
+}
+
+h2,h3{
+    font-family: 'Kanit',sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
+}
+
 button{
     font-family: 'Kanit',sans-serif;
 }
@@ -33,7 +50,7 @@ button:hover{
     text-align: center;
     padding: 14px;
     text-decoration: none;
-    font-size: 17px;
+    font-size: 20px;
     border-radius: 5px;
   }
   
@@ -50,4 +67,9 @@ button:hover{
       color: green;
       text-align: left;
       display: inline-block;
+  }
+
+  .img_rsponsive{
+    width: 300px;
+    height: auto;
   }

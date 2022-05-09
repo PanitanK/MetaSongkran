@@ -10,20 +10,25 @@
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="profile.css">
+        <link rel="stylesheet" href="/profileedit.css">
+        <center>
+            <div class="pill-nav">
         <a href="/profile">เราเปลี่ยนใจแล้ว เราอยากกลับไปหน้าที่แล้ว </a>
+    </center>
+    </div>
     </head>
     <body>
-        <h1><%=username%> นายนะก็เปลี่ยนรูปโปรไฟล์ได้่นะ  </h1>
-        <h2>รูปปัจจุบันของนาย</h2>
-        <img src= <%= imglink %> >
+        <center>
+        <h1><%=username%> นายนะก็เปลี่ยนรูปโปรไฟล์ได้นะ  </h1>
+        <h2>รูปปัจจุบันของนาย  <%=username%></h2>
+        <img src= "<%= imglink %>" class="img_rsponsive" >
         <form action="/profile/edit" method="post">
             <div>
                 <label for="imglink">New Profile fmage link : </label>
                 <input type="text" name="imglink" id="imglink">
             </div>
             <button>ยืนยัน</button>
-           
+           </center>
     
     
     
