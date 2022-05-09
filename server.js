@@ -215,7 +215,7 @@ app.get("/profile/device1" , (req,res) =>{
 
 
 
-
+username = 'sura'
 
 var port1 = 'TOU'
 var port2 = 'MANG'
@@ -273,6 +273,7 @@ app.post("/profile/device1/OFF" , (req , res ) => {
     
    
 })
+
 
 
 app.post("/profile/device1/ON" , (req , res ) => {
