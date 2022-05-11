@@ -20,4 +20,9 @@
     background-color: dodgerblue;
     color: white;
   }
-  
+  body{
+    background: linear-gradient(#c7a0f5, #ffcaca);
+  }
+  html{
+    height: 100%;
+  }
