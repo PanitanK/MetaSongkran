@@ -48,6 +48,9 @@ app.set('view engine' , 'ejs')
 app.get("/",(req,res)=> {
     res.render("index")    
 })
+app.get("/member",(req,res)=> {
+    res.render("member")    
+})
 app.get("/login",(req,res)=> {
     res.render("login")
 })
