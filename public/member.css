@@ -4,7 +4,7 @@ body{
     background: linear-gradient(#c7a0f5, #ffcaca);
   }
   html{
-    height: 100%;
+    height: 220%;
   }
 
   .pill-nav a {
@@ -37,4 +37,27 @@ h1{
     font-family: 'Kanit',sans-serif;
     font-size: 4rem;
     font-weight: 500;
+    background-image: linear-gradient(#ffffff,#ffffff);
+    background-repeat: no-repeat;
+    background-size: 0% 100%;
+    background-position-x: right;
+    transition: background-size 500ms;
 }
+h2{
+  text-decoration: underline wavy white;
+  font-family:'Kanit',sans-serif;
+  font-size: 2.5rem;
+  font-weight: 400;
+}
+
+h3{
+  font-family:'Kanit',sans-serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+h1:hover{
+  background-size: 100% 100%;
+  background-position-x: left;
+}
+

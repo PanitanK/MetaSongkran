@@ -194,30 +194,6 @@ app.get("/profile/device1" , (req,res) =>{
     
 })
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 username = 'sura'
 
 var port1 = 'TOU'
@@ -308,10 +284,6 @@ app.post("/profile/device1/ON" , (req , res ) => {
     
    
 })
-
-
-
-
 
 
 
