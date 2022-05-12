@@ -11,9 +11,7 @@ h2{
     font-size: 1.5rem;
     font-weight: 300;
 }
-a:hover{
-    color: rgb(70, 134, 253);
-}
+
 label{
     font-family: 'Kanit',sans-serif;
     font-size: 1rem;
@@ -77,17 +75,12 @@ button:hover{
       blink 1.3s steps(var(--number-of-characters)) infinite;
   }
   
-  {
-    box-sizing: border-box;}
-
 
 .input-container {
-  display: flex;
+  display: inline-block;
   width: 100%;
   margin-bottom: 15px;
 }
-
-
 .icon {
   padding: 10px;
   background: dodgerblue;
@@ -95,33 +88,12 @@ button:hover{
   min-width: 50px;
   text-align: center;
 }
-
-
 .input-field {
   width: 20%;
-  padding: 10px;
+  padding: 6px;
   outline: none;
 }
 
 .input-field:focus {
-  border: 2px solid dodgerblue;
+  border: 4px solid dodgerblue;
 }
-
-
-.buton {
-  background-color: dodgerblue;
-  color: white;
-  padding: 15px 20px;
-  border: none;
-  cursor: pointer;
-  width: 50%;
-  opacity: 0.9;
-}
-
-.buton:hover {
-  opacity: 1;
-}
-{
-text-align: center;
-}
-    
