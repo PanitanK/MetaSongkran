@@ -64,7 +64,7 @@ button:hover{
     color: white;
   }
   .BIG {
-      color: green;
+      color: rgb(0, 0, 0);
       text-align: left;
       display: inline-block;
   }

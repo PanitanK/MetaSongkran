@@ -48,11 +48,11 @@ app.set('view engine' , 'ejs')
 app.get("/",(req,res)=> {
     res.render("index")    
 })
-app.get("/member",(req,res)=> {
-    res.render("member")    
-})
 app.get("/login",(req,res)=> {
     res.render("login")
+})
+app.get("/member",(req,res)=> {
+    res.render("member")
 })
 app.get("/feeder",(req,res)=> {
     res.render("feeder")
@@ -67,6 +67,7 @@ app.post("/main",(req,res)=> {
 app.listen(port,()=>{
     console.log("Server is listening on port ",port)
 })
+
 app.get("/reg",(req,res)=> {
     locker.getConnection((err,connection)=>{
         if (err) throw err
@@ -194,33 +195,6 @@ app.get("/profile/device1" , (req,res) =>{
     
 })
 
-username = 'sura'
-
-var port1 = 'TOU'
-var port2 = 'MANG'
-var portlist = [port1 , port2]
-
-client.on("connect" , function() {
-    client.subscribe(portlist)
-})
-
-client.on("message" , function (portlist ,message,packet ){
-    console.log(portlist)
-    console.log(packet.topic)
-    console.log(message.toLocaleString())
-    portval = message.toLocaleString()
-    porto = packet.topic
-    device.getConnection((err,connection) => {
-        if (err) throw err 
-        device.query('UPDATE `device` SET `port1val` = ? WHERE username = ? AND port1 = ?' , [portval , username , porto])
-        connection.release()
-    })
-    device.getConnection((err,connection) => {
-        if (err) throw err 
-        device.query('UPDATE `device` SET `port2val` = ? WHERE username = ? AND port2 = ?' , [portval , username , porto])
-        connection.release()
-    })
-})
 
 
 app.post("/profile/device1/OFF" , (req , res ) => {
@@ -250,7 +224,7 @@ app.post("/profile/device1/OFF" , (req , res ) => {
         })
     }) 
     
-   
+    client.publish(port2 , "OF")
 })
 
 
@@ -258,7 +232,7 @@ app.post("/profile/device1/OFF" , (req , res ) => {
 app.post("/profile/device1/ON" , (req , res ) => {
     trig = req.body.trig 
     console.log(trig)
-
+    
 
 
     device.getConnection((err,connection) => {
@@ -279,11 +253,133 @@ app.post("/profile/device1/ON" , (req , res ) => {
             var port2val = rows[0].port2val
             var devname = rows[0].devname
             res.render("feeder" ,{ devname : devname , devorder : devorder , port1 : port1 , port2 : port2 , port1val ,port2val} ) 
+            client.publish(port2 , "OOOOOON")
         })
     }) 
+
     
    
+})
+var username = 'songkran'
+var port1 = "TOU"
+var port2 = "MANG"
+var portlist = [ port1 , port2]
+
+client.on("connect" , function() {
+    
+    client.subscribe(portlist)
+    console.log("Is subsricibed to : " , portlist , " Awaiting ")
+})
+
+client.on("message" , function (portlist ,message,packet ){
+   
+
+ 
+    portval = message.toLocaleString()
+  
+    porto = packet.topic
+    device.getConnection((err,connection) => {
+        if (err) throw err 
+        device.query('UPDATE `device` SET `port1val` = ? WHERE username = ? AND port1 = ?' , [portval , username , porto])
+        connection.release()
+      
+    })
+    device.getConnection((err,connection) => {
+        if (err) throw err 
+        device.query('UPDATE `device` SET `port2val` = ? WHERE username = ? AND port2 = ?' , [portval , username , porto])
+        connection.release()
+      
+    })
+
+    device.getConnection((err,connection) => {
+        device.query(' SELECT * FROM `device` WHERE `username` = ?  ', [username] , (err , rows)=> {
+            if (err) throw err 
+            connection.release()
+        
+            var port2val = rows[0].port2val
+       
+            
+        })
+    })
+
 })
 
 
 
+/*app.post("/testpost" ,(req , res ) => {
+
+    console.log("IM IN ")
+   
+    device.getConnection((err,connection) =>{
+        if (err) throw err 
+        device.query(' SELECT * FROM `device` WHERE `username` = ?  ', [username] , (err , rows)=> {
+            if (err) throw err 
+            connection.release()
+            var devorder = rows[0].devorder
+            var port1 = rows[0].port1
+            var port1val = rows[0].port1val
+            var port2 = rows[0].port2
+            var port2val = rows[0].port2val
+            var devname = rows[0].devname
+            var portlist = [port1 , port2]
+        })
+    }) 
+
+  
+  
+    console.log("IM READ ALL VAR PORT")
+    console.log(portlist)
+    client.on("connect" , function() {
+        console.log(portlist)
+        console.log("2nd time ")
+        
+        client.subscribe(portlist)
+        console.log("Is subsricibed to : " , portlist , " Awaiting ")
+    })
+    
+    client.on("message" , function (portlist ,message,packet ){
+        console.log("3rd time ")
+        console.log(portlist)
+        console.log(packet.topic)
+        console.log(message.toLocaleString())
+        portval = message.toLocaleString()
+        porto = packet.topic
+        device.getConnection((err,connection) => {
+            if (err) throw err 
+            device.query('UPDATE `device` SET `port1val` = ? WHERE username = ? AND port1 = ?' , [portval , username , porto])
+            connection.release()
+            console.log(portval)
+        })
+        device.getConnection((err,connection) => {
+            if (err) throw err 
+            device.query('UPDATE `device` SET `port2val` = ? WHERE username = ? AND port2 = ?' , [portval , username , porto])
+            connection.release()
+            console.log(portval)
+        })
+    })
+
+    
+
+
+
+
+
+
+    
+    console.log("Im out ")
+    device.getConnection((err,connection) =>{
+        if (err) throw err 
+        device.query(' SELECT * FROM `device` WHERE `username` = ?  ', [username] , (err , rows)=> {
+            if (err) throw err 
+            connection.release()
+            var devorder = rows[0].devorder
+            var port1 = rows[0].port1
+            var port1val = rows[0].port1val
+            var port2 = rows[0].port2
+            var port2val = rows[0].port2val
+            var devname = rows[0].devname
+            res.render("feeder" ,{ devname : devname , devorder : devorder , port1 : port1 , port2 : port2 , port1val ,port2val} ) 
+        })
+    }) 
+
+})      */
