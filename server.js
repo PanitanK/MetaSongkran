@@ -224,7 +224,7 @@ app.post("/profile/device1/OFF" , (req , res ) => {
         })
     }) 
     
-    client.publish(port2 , "OF")
+    client.publish(port2 , "OFF")
 })
 
 
@@ -253,7 +253,7 @@ app.post("/profile/device1/ON" , (req , res ) => {
             var port2val = rows[0].port2val
             var devname = rows[0].devname
             res.render("feeder" ,{ devname : devname , devorder : devorder , port1 : port1 , port2 : port2 , port1val ,port2val} ) 
-            client.publish(port2 , "OOOOOON")
+            client.publish(port2 , "ON")
         })
     }) 
 
